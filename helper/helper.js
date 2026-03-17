@@ -3,16 +3,10 @@ const fs = require("fs").promises;
 
 const createPath = (...arr) => path.join(path.resolve(), ...arr);
 
-const readFile = async (path) => {
-    try {
-        const file = JSON.parse(await fs.readFile(path, "utf-8"));
-        return file;
-    } catch (err) {
-        return err.message;
-    }
-};
+const readFile = async (path) => JSON.parse(await fs.readFile(path, "utf-8"));
 
-const updateFile = async (path, data) => fs.writeFile(path, JSON.stringify(data, null, 2));
+const updateFile = async (path, data) =>
+    fs.writeFile(path, JSON.stringify(data, null, 2));
 
 const sendResponse = (
     res,

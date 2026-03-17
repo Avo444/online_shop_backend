@@ -42,15 +42,13 @@ router.post(
     loginMiddleware,
     async (req, res) => {
         try {
-            const { body, users, session } = res.locals;
+            const { body, users } = res.locals;
             const user = users.find((user) => user.email === body.email);
             
             if (!user) {
                 throw new Error("User is not found!");
             }
-            if (session.id) {
-                throw new Error("You are already Loggined");
-            }
+            
             if (user.password !== body.password) {
                 throw new Error("Wrong password!");
             }

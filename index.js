@@ -1,4 +1,4 @@
-const { authRouter, usersRouter } = require("./routes");
+const { authRouter, usersRouter, productRouter } = require("./routes");
 require("dotenv").config();
 
 const express = require("express");
@@ -7,9 +7,10 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/auth", authRouter)
-app.use("/api", usersRouter)
+app.use("/auth", authRouter);
+app.use("/api", usersRouter);
+app.use("/api", productRouter);
 
 app.listen(PORT, (err) => {
-    console.log(err ? err : `Server is connected in ${PORT} port`)
-})
+    console.log(err ? err : `Server is connected in ${PORT} port`);
+});
