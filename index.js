@@ -1,4 +1,10 @@
-const { authRouter, usersRouter, productRouter } = require("./routes");
+const {
+    authRouter,
+    usersRouter,
+    basketRouter,
+    productRouter,
+} = require("./routes");
+
 require("dotenv").config();
 
 const express = require("express");
@@ -9,6 +15,7 @@ app.use(express.json());
 
 app.use("/auth", authRouter);
 app.use("/api", usersRouter);
+app.use("/api", basketRouter);
 app.use("/api", productRouter);
 
 app.listen(PORT, (err) => {

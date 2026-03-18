@@ -4,11 +4,11 @@ const { patchProductSchema } = require("../schemas");
 const patchProductMiddleware = async (req, res, next) => {
     try {
         const { session } = res.locals;
-        const body = await patchProductSchema.validateAsync(req.body);
         if (!session.id) {
             throw new Error("You aren't logged in!");
         }
 
+        const body = await patchProductSchema.validateAsync(req.body);
         res.locals.body = body;
         next();
     } catch (err) {

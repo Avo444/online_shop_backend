@@ -7,7 +7,6 @@ const patchProductSchema = Joi.object({
     sale: Joi.number().min(0),
 })
     .min(1)
-    .unknown(false)
-    .required();
+    .unknown(false);
 
 module.exports = patchProductSchema;

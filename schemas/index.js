@@ -1,13 +1,17 @@
+const putSchema = require("./putSchema");
 const loginSchema = require("./loginSchema");
 const productSchema = require("./productSchema");
 const registerSchema = require("./registerSchema");
-const productsSchema = require("./productsSchema");
+const postBasketSchema = require("./postBasketSchema");
+const patchBasketSchema = require("./patchBasketSchema");
 const patchProductSchema = require("./patchProductSchema");
 
 module.exports = {
-    registerSchema,
+    putSchema,
     loginSchema,
     productSchema,
-    productsSchema,
+    registerSchema,
+    postBasketSchema,
+    patchBasketSchema,
     patchProductSchema,
 };

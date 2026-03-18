@@ -1,10 +1,10 @@
 const { nanoid } = require("nanoid");
 const { sendResponse, updateFile, createPath } = require("../helper/helper");
 const {
-    productsMiddleware,
+    putMiddleware,
     sessionMiddleware,
+    productsMiddleware,
     postProductMiddleware,
-    putProductsMiddleware,
     patchProductMiddleware,
     usersMiddleware,
 } = require("../middleware");
@@ -53,7 +53,7 @@ router.put(
     "/products",
     sessionMiddleware,
     usersMiddleware,
-    putProductsMiddleware,
+    putMiddleware,
     async (req, res) => {
         try {
             const { body, session, users } = res.locals;
