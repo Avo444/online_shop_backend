@@ -4,10 +4,11 @@ const loginSchema = require("../schemas/loginSchema");
 const loginMiddleware = async (req, res, next) => {
     try {
         const { session } = res.locals;
-        const body = await loginSchema.validateAsync(req.body);
         if (session.id) {
             throw new Error("You are already Loggined");
         }
+        
+        const body = await loginSchema.validateAsync(req.body);
         res.locals.body = body;
         next();
     } catch (err) {

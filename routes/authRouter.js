@@ -44,11 +44,11 @@ router.post(
         try {
             const { body, users } = res.locals;
             const user = users.find((user) => user.email === body.email);
-            
+
             if (!user) {
                 throw new Error("User is not found!");
             }
-            
+
             if (user.password !== body.password) {
                 throw new Error("Wrong password!");
             }
@@ -60,5 +60,17 @@ router.post(
         }
     },
 );
+
+router.post("/logout", async (req, res) => {
+    try {
+        await updateFile(createPath("db", "session.json"), {});
+        const message = { message: "Success!" };
+        sendResponse(res, message);
+    } catch (err) {
+        const error = { error: err.message };
+        sendResponse(res, error, 404);
+    }
+});
+
 
 module.exports = router;

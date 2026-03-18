@@ -1,13 +1,14 @@
 const { sendResponse } = require("../helper/helper");
-const { productSchema } = require("../schemas");
+const { putSchema } = require("../schemas");
 
-const postProductMiddleware = async (req, res, next) => {
+const putMiddleware = async (req, res, next) => {
     try {
         const { session } = res.locals;
         if (!session.id) {
             throw new Error("You aren't logged in!");
         }
-        const body = await productSchema.validateAsync(req.body);
+        
+        const body = await putSchema.validateAsync(req.body);
         res.locals.body = body;
         next();
     } catch (err) {
@@ -16,4 +17,4 @@ const postProductMiddleware = async (req, res, next) => {
     }
 };
 
-module.exports = postProductMiddleware;
+module.exports = putMiddleware;
